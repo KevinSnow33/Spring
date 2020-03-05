@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!--    父对象（父类）   -->
+    <bean id="fatherObject" class="com.kevinsnow.entity.Student">
+        <property name="name" value="fatherObject"></property>
+        <property name="age" value="100"></property>
+        <property name="addresses">
+            <list>
+                <ref bean="addr"></ref>
+                <ref bean="addr2"></ref>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="addr" class="com.kevinsnow.entity.Address">
+        <property name="address" value="甘井子"></property>
+        <property name="num" value="160024"></property>
+    </bean>
+
+    <bean id="addr2" class="com.kevinsnow.entity.Address">
+        <property name="address" value="沙河口"></property>
+        <property name="num" value="160026"></property>
+    </bean>
+
+
+<!--  Spring 的继承关注点在于具体的对象，⽽而不不在于类，即不不同的两个类的实例例化对象可以完成继承-->
+<!--  前提是⼦子对象必须包含⽗父对象的所有属性，同时可以在此基础上添加其他的属性&ndash;&gt;-->
+
+
+
+<!--    子对象（子类）-->
+    <bean id="sonObject" class="com.kevinsnow.entity.Student" parent="fatherObject">
+        <!--  子类继承父类后可以对父类中的属性重新赋值      -->
+        <property name="name" value="sonObject"></property>
+        <property name="age" value="50"></property>
+    </bean>
+
+</beans>

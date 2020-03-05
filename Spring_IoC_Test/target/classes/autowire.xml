@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="address" class="com.kevinsnow.entity.Address">
+        <property name="address" value="甘井子"></property>
+        <property name="num" value="160024"></property>
+    </bean>
+
+<!--  通过autowire，即使没有手动配置stu的“address“”属性，通过byname找到【已经配好的id
+    为“address”的bean】，自动注入stu这个bean中-->
+    <bean id="stu1" class="com.kevinsnow.entity.Student" autowire="byName">
+        <property name="name" value="张三"></property>
+        <property name="age" value="18"></property>
+    </bean>
+
+<!--  通过autowire，即使没有手动配置stu的“address“”属性，通过byType找到【符合类型
+    为“address”的bean】，自动注入stu这个bean中-->
+    <bean id="stu2" class="com.kevinsnow.entity.Student" autowire="byType">
+        <property name="name" value="张三"></property>
+        <property name="age" value="18"></property>
+    </bean>
+
+
+
+
+</beans>

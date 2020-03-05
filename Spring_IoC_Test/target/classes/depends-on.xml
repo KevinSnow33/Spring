@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!--    与继承类似，依赖也是描述 bean 和 bean 之间的⼀一种关系，配置依赖之后，被依赖的 bean
+        一定先创建，再创建依赖的 bean， A 依赖于 B，先创建 B，再创建 A。-->
+
+    <bean id="student" class="com.kevinsnow.entity.Student" depends-on="user"></bean>
+    <bean id="user" class="com.kevinsnow.entity.User"></bean>
+
+</beans>

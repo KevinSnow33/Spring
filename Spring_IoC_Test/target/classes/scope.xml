@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!--    Spring 管理理的 bean 是根据 scope 来⽣生成的，表示 bean 的作⽤用域，共4种，默认值是 singleton。-->
+<!--          1.singleton：单例例，表示通过 IoC 容器器获取的 bean 是唯⼀一的。-->
+<!--          2.prototype：原型，表示通过 IoC 容器器获取的 bean 是不不同的。-->
+<!--          3.request：请求，表示在⼀一次 HTTP 请求内有效。-->
+<!--          4.session：回话，表示在⼀一个⽤用户会话内有效。-->
+<!--      request 和 session 只适⽤用于 Web 项⽬目，⼤大多数情况下，使⽤用单例例和原型较多。-->
+<!--      prototype 模式当业务代码获取 IoC 容器器中的 bean 时， Spring 才去调⽤用⽆无参构造创建对应的 bean。-->
+<!--      singleton 模式⽆无论业务代码是否获取 IoC 容器器中的 bean， Spring 在加载 spring.xml 时就会创建bean。-->
+
+<!--    在bean的scope属性处设置   -->
+    <bean id="stu1" class="com.kevinsnow.entity.Student" scope="prototype">
+        <property name="name" value="张三"></property>
+        <property name="age" value="18"></property>
+        <!--    引用成员变量要先配置其bean，然后在本bean中通过ref引用   -->
+        <property name="address" ref="addr"></property>
+    </bean>
+<!--    在bean的scope属性处设置   -->
+    <bean id="stu1" class="com.kevinsnow.entity.Student" scope="singleton">
+        <property name="name" value="张三"></property>
+        <property name="age" value="18"></property>
+        <!--    引用成员变量要先配置其bean，然后在本bean中通过ref引用   -->
+        <property name="address" ref="addr"></property>
+    </bean>
+
+    <bean id="addr" class="com.kevinsnow.entity.Address">
+        <property name="address" value="甘井子"></property>
+        <property name="num" value="160024"></property>
+    </bean>
+
+
+</beans>

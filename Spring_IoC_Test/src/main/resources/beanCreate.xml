@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<!--    1.通过无参构造创建 bean (相应类中必须有无参构造方法)             -->
+    <!--    bean的id就是对象名-->
+    <bean id="stu1" class="com.kevinsnow.entity.Student">
+        <property name="name" value="张三"></property>
+        <property name="age" value="18"></property>
+        <!--    引用成员变量要先配置其bean，然后在本bean中通过ref引用   -->
+        <property name="address" ref="addr"></property>
+    </bean>
+    
+    <bean id="addr" class="com.kevinsnow.entity.Address">
+        <property name="address" value="甘井子"></property>
+        <property name="num" value="160024"></property>
+    </bean>
+
+
+<!--    2.通过有参构造创建 bean  (相应类中必须有有参构造方法)            -->
+    <!--  方式一：通过属性名称   -->
+    <bean id="stu2" class="com.kevinsnow.entity.Student">
+        <constructor-arg name="name" value="李四"></constructor-arg>
+        <constructor-arg name="age" value="20"></constructor-arg>
+        <!--    引用成员变量要先配置其bean，然后在本bean中通过ref引用   -->
+        <constructor-arg name="address" ref="addr"></constructor-arg>
+    </bean>
+
+    <!--  方式二：通过属性顺序的下标    -->
+    <bean id="stu3" class="com.kevinsnow.entity.Student">
+        <constructor-arg index="0" value="李四"></constructor-arg>
+        <constructor-arg index="1" value="20"></constructor-arg>
+        <!--    引用成员变量要先配置其bean，然后在本bean中通过ref引用   -->
+        <constructor-arg index="2" ref="addr"></constructor-arg>
+    </bean>
+
+
+<!--    3.给 bean 注入集合 -->
+
+    <bean id="addr2" class="com.kevinsnow.entity.Address">
+        <property name="address" value="沙河口"></property>
+        <property name="num" value="160026"></property>
+    </bean>
+
+    <bean id="stu4" class="com.kevinsnow.entity.Student">
+        <property name="name" value="张三"></property>
+        <property name="age" value="18"></property>
+        <property name="addresses">
+            <list>
+                <ref bean="addr"></ref>
+                <ref bean="addr2"></ref>
+            </list>
+        </property>
+    </bean>
+
+</beans>
